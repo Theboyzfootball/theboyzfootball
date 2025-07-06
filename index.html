@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheBoyzFootball</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ff4d6d;
+            --text-color: #ffffff;
+            --accent-color: #ff8fa3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a1a1a 100%);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent-color);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1543357480-c60d400e7ef6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.2) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23ff4d6d" stroke-width="1" fill="none" opacity="0.1"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .soccer-ball {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><path d="M75,0 A75,75 0 0,1 150,75 A75,75 0 0,1 75,150 A75,75 0 0,1 0,75 A75,75 0 0,1 75,0 Z" fill="%23ffffff" opacity="0.1"/><path d="M75,0 L75,150 M0,75 L150,75 M35,35 L115,115 M35,115 L115,35" stroke="%23ffffff" stroke-width="1" opacity="0.1"/></svg>') no-repeat center center;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        .soccer-ball:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 0s;
+        }
+        
+        .soccer-ball:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 1s;
+        }
+        
+        .soccer-ball:nth-child(3) {
+            bottom: 10%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Rest of your existing CSS remains the same */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+            animation: fadeInLeft 1s ease;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            animation: fadeInRight 1s ease;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.03);
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #1a1a1a 0%, var(--primary-color) 100%);
+            padding: 4rem 0;
+        }
+        
+        .head-to-head {
+            background: rgba(26, 26, 26, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease;
+        }
+        
+        .head-to-head h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .head-to-head h4 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--accent-color);
+        }
+        
+        .head-to-head p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .head-to-head .divider {
+            height: 2px;
+            background: var(--secondary-color);
+            margin: 1.5rem 0;
+            opacity: 0.3;
+        }
+        
+        .matches-won {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-stats {
+            animation: fadeInUp 1s ease;
+        }
+        
+        .team-stats h5 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+        
+        .team-stats p {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            animation: fadeIn 1s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(26, 26, 26, 0.5);
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 77, 109, 0.1);
+        }
+        
+        .contact {
+            background: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .contact .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-form {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 2px var(--secondary-color);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            animation: fadeIn 1s ease;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+        }
+        
+        footer {
+            background: #1a1a1a;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content {
+                padding: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .soccer-ball {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-futbol"></i> TheBoyzFootball</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#stats">Stats</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-pattern"></div>
+        <div class="soccer-ball"></div>
+        <div class="soccer-ball"></div>
+        <div class="soccer-ball"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to TheBoyzFootball</h1>
+                <p>A passionate football team from Pakistan showcasing our love for the beautiful game. Follow our journey, stats, and matches as we compete and celebrate football together.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#about" class="btn">Learn More</a>
+                    <a href="#stats" class="btn" style="background: transparent; border: 2px solid var(--secondary-color);">View Stats</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>We are a group of friends from Pakistan who share an immense love for football. What started as casual matches among friends has grown into a passionate community of players who live and breathe the sport.</p>
+                    <p>Our team, TheBoyzFootball, represents the spirit of friendship, competition, and sportsmanship. We play with heart and dedication, always striving to improve our skills and enjoy the game we love.</p>
+                    <p>Our journey is documented through our matches, stats, and the memories we create on and off the field. Join us as we continue to write our football story.</p>
+                    <a href="#stats" class="btn">View Our Stats</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Football team celebrating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats">
+        <div class="container">
+            <h2 class="section-title">Team Statistics</h2>
+            
+            <div class="head-to-head">
+                <h3>HEAD TO HEAD</h3>
+                <p><strong>Total matches</strong>: 32</p>
+                <p><strong>MOID FC</strong>: 17</p>
+                <p><strong>SUBHAN FC</strong>: 15</p>
+                <p><strong>3 match draw</strong></p>
+                
+                <div class="divider"></div>
+                
+                <h4>MATCHES WON</h4>
+                <div class="matches-won">
+                    <div class="team-stats">
+                        <h5>MOID FC</h5>
+                        <p>53%</p>
+                    </div>
+                    <div class="team-stats">
+                        <h5>SUBHAN FC</h5>
+                        <p>47%</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--accent-color); font-family: 'Montserrat', sans-serif;">TOP SCORERS</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>TEAM</th>
+                        <th>MATCHES PLAYED</th>
+                        <th>GOALS SCORED</th>
+                        <th>ASSISTS</th>
+                        <th>MATCH WON</th>
+                        <th>AVERAGE RATING</th>
+                        <th>FOOT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MOID</td>
+                        <td>MOID FC</td>
+                        <td>33</td>
+                        <td>80</td>
+                        <td>NILI</td>
+                        <td>16</td>
+                        <td>9.6</td>
+                        <td>Left</td>
+                    </tr>
+                    <tr>
+                        <td>SUBHAN</td>
+                        <td>SUBHAN FC</td>
+                        <td>33</td>
+                        <td>67</td>
+                        <td>NILI</td>
+                        <td>14</td>
+                        <td>9.6</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>QAHIR</td>
+                        <td>SUBHAN FC</td>
+                        <td>18</td>
+                        <td>48</td>
+                        <td>NILI</td>
+                        <td>10</td>
+                        <td>9.6</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>UBAID</td>
+                        <td>MOID FC</td>
+                        <td>33</td>
+                        <td>36</td>
+                        <td>NILI</td>
+                        <td>16</td>
+                        <td>9.4</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>BAKER</td>
+                        <td>MOID FC</td>
+                        <td>28</td>
+                        <td>22</td>
+                        <td>NILI</td>
+                        <td>13</td>
+                        <td>9.2</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>QASIM</td>
+                        <td>SUBHAN FC</td>
+                        <td>18</td>
+                        <td>20</td>
+                        <td>NILI</td>
+                        <td>5</td>
+                        <td>9.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>AWAIS</td>
+                        <td>SUBHAN FC</td>
+                        <td>6</td>
+                        <td>16</td>
+                        <td>NILI</td>
+                        <td>2</td>
+                        <td>10.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>ASIM</td>
+                        <td>SUBHAN FC</td>
+                        <td>21</td>
+                        <td>14</td>
+                        <td>NILI</td>
+                        <td>9</td>
+                        <td>8.1</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>RAYAN</td>
+                        <td>MOID FC</td>
+                        <td>15</td>
+                        <td>10</td>
+                        <td>NILI</td>
+                        <td>9</td>
+                        <td>8.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>MOIZ</td>
+                        <td>MOID FC</td>
+                        <td>21</td>
+                        <td>9</td>
+                        <td>NILI</td>
+                        <td>10</td>
+                        <td>8.9</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>MURTAZA</td>
+                        <td>SUBHAN FC</td>
+                        <td>14</td>
+                        <td>5</td>
+                        <td>NILI</td>
+                        <td>8</td>
+                        <td>9.3</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>ABDULLAH</td>
+                        <td>MOID FC</td>
+                        <td>15</td>
+                        <td>5</td>
+                        <td>NILI</td>
+                        <td>8</td>
+                        <td>8.9</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>AHMED</td>
+                        <td>MOID FC</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>NILI</td>
+                        <td>1</td>
+                        <td>10.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>ANEEB</td>
+                        <td>MOID FC</td>
+                        <td>7</td>
+                        <td>2</td>
+                        <td>NILI</td>
+                        <td>5</td>
+                        <td>8.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>MUNEEB</td>
+                        <td>SUBHAN FC</td>
+                        <td>8</td>
+                        <td>2</td>
+                        <td>NILI</td>
+                        <td>2</td>
+                        <td>8.0</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>ZESSHAN</td>
+                        <td>SUBHAN FC</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>NILI</td>
+                        <td>1</td>
+                        <td>7.8</td>
+                        <td>Left</td>
+                    </tr>
+                    <tr>
+                        <td>IBRAHIM</td>
+                        <td>SUBHAN FC</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>NILI</td>
+                        <td>1</td>
+                        <td>8.1</td>
+                        <td>Right</td>
+                    </tr>
+                    <tr>
+                        <td>ALI</td>
+                        <td>MOID FC</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>NILI</td>
+                        <td>0</td>
+                        <td>8.0</td>
+                        <td>Right</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 1rem; color: var(--accent-color);"><em>Note: MOID and ZESSHAN are left-footed, all other players are right-footed.</em></p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-form">
+                <form id="questionForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="question">Your Question</label>
+                        <textarea id="question" name="question" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Question</button>
+                </form>
+            </div>
+            
+            <div class="social-links">
+                <a href="mailto:gmeinashfaq@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
+                <a href="https://instagram.com/theboyz_football" target="_blank" title="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; color: var(--accent-color);">
+                Email: gmeinashfaq@gmail.com<br>
+                Instagram: @theboyz_football
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TheBoyzFootball. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--secondary-color);"></i> by football enthusiasts</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your question! We will get back to you soon.');
+            this.reset();
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.about-text, .about-image, .head-to-head, .team-stats, table, .contact-form, .social-links');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translate(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
